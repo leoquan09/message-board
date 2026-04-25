@@ -3,9 +3,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <title>HI</title>
+    <title>Mini Messageboard</title>
 </head>
 <body>
-    
+    <% for (let i = 0; i < messages.length; i++) { %>
+        <div class="message-card">
+            <h1> <%= messages[i].user %> (<%= messages[i].added.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>)</h1>
+            <p> <%= messages[i].text %> </p>
+        </div>
+    <% } %>
+    <div class="submit-btn"><a href="/new">post a new comment!</a></div>
 </body>
 </html>

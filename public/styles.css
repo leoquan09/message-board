@@ -1,3 +1,82 @@
 body {
-    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #121212;
+    color: #E0E0E0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div, form {
+    background-color: #1E1E1E;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+button {
+    background-color: #a855f7;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #9333ea;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+input[type="text"] {
+    background-color: #2c2c2c;
+    border: 2px solid #3d3d3d;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #a855f7;
+}
+
+.submit-btn {
+    padding: 25px;
+    background-color: #BB86FC;
+}
+
+.submit-btn:hover {
+    background-color: #7B52AB;
+    color: #ffffff !important;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 15px rgba(123, 82, 171, 0.4);
+    transition: all 0.2s ease;
+}
+
+.message-card:hover {
+    background-color: #2A2A2A;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 15px rgba(123, 82, 171, 0.4);
+    transition: all 0.2s ease;
+}
+
+a {
+    display: block;
+    color: #1a1a1a;
+    text-decoration: none;  
+    width: 100%;
+}
+
+[id^="hl-aria-live-"] {
+    display: none !important;
 }
