@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const homeRouter = Router();
+const db = require('../db');
 
 const messages = [];
 
