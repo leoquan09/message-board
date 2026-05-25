@@ -1,18 +1,7 @@
 const { Router } = require("express");
 const homeRouter = Router();
-const db = require('../db');
+const controller = require('../controllers/homeController.js');
 
-const messages = [];
-
-homeRouter.post('/new', (req, res) => {
-    const { content, author } = req.body;
-    messages.push({ text: content, user: author, added: new Date() });
-    res.redirect('/');
-});
-
-homeRouter.get('/', (req, res) => {
-    res.render('home', { messages: messages });
-    console.log('request made to home');
-});
+homeRouter.get('/', controller.renderHome);
 
 module.exports = homeRouter;

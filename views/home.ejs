@@ -6,10 +6,11 @@
     <title>Mini Messageboard</title>
 </head>
 <body>
-    <% for (let i = messages.length-1; i > 0; i--) { %>
+    <% for (let i = messages.length-1; i >= 0; i--) { %>
         <div class="message-card">
-            <h1> <%= messages[i].user %> (<%= messages[i].added.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>)</h1>
-            <p> <%= messages[i].text %> </p>
+            <h1> <%= messages[i].username %> (<%= new Date(messages[i].timesent).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %>) </h1>
+            
+            <p> <%= messages[i].message %> </p>
         </div>
     <% } %>
     <div class="submit-btn"><a href="/new">post a new comment!</a></div>

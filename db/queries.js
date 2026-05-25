@@ -13,6 +13,13 @@ async function createUser(username) {
     return rows[0];
 };
 
+async function getMessages() {
+    const { rows } = await db.query(
+        'SELECT username, message, timesent FROM messages INNER JOIN users ON messages.user_id = users.id WHERE message IS NOT NULL'
+    );
+    return rows;
+};
+
 async function createMessage(message, userID) {
     const { rows } = await db.query(
         'INSERT INTO messages (message, user_id) VALUES ($1, $2) RETURNING *',
@@ -20,3 +27,10 @@ async function createMessage(message, userID) {
     );
     return rows[0];
 };
+
+module.exports = {
+    getUserByName,
+    createUser,
+    createMessage,
+    getMessages
+}
