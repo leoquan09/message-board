@@ -5,19 +5,7 @@ async function renderRequestPage(req, res) {
 };
 
 async function createPostRequest(message, author) {
-    const userExists = await db.findUserByUsername(author);
-    let userID;
-
-    if (!userExists) {
-        const newUser = await db.addUser(author);
-        userID = newUser.id;
-        console.log("created user: ", userID);
-    } else {
-        userID = userExists.id;
-        console.log("found the users id: ", userID);
-    };
-
-    const newMessage = await db.createMessage(message, userID);
+    const newMessage = await db.createMessage(message, author);
     console.log(newMessage);
 };
 

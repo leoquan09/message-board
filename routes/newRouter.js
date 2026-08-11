@@ -5,9 +5,9 @@ const checkAuth = require('../helpers/checkAuth.js');
 
 newRouter.get('/new', checkAuth, controller.renderRequestPage);
 
-newRouter.post('/new', async (req, res) => {
+newRouter.post('/new', checkAuth, async (req, res) => {
     const message = req.body.message;
-    const author = req.body.author;
+    const author = req.user.id;
     await controller.createPostRequest(message, author);
     res.redirect('/');
 });
