@@ -5,11 +5,11 @@ async function renderRequestPage(req, res) {
 };
 
 async function createPostRequest(message, author) {
-    const userExists = await db.getUserByName(author);
+    const userExists = await db.findUserByUsername(author);
     let userID;
 
     if (!userExists) {
-        const newUser = await db.createUser(author);
+        const newUser = await db.addUser(author);
         userID = newUser.id;
         console.log("created user: ", userID);
     } else {

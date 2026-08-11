@@ -1,16 +1,36 @@
-const db = require('./pool.js');
+const db = require('../config/pool.js')
 
-async function getUserByName(username) {
-    const { rows } = await db.query('SELECT * FROM users WHERE username = $1', [username]);
+const pool = require('../config/pool.js');
+const hash = require('../helpers/hash.js');
+
+async function findUserByUsername(user) {
+    const query = `
+    SELECT * FROM users
+    WHERE username = $1;
+    `;
+    const { rows } = await pool.query(query, [user]);
     return rows[0];
 };
 
-async function createUser(username) {
-    const { rows } = await db.query(
-        'INSERT INTO users (username) VALUES ($1) RETURNING *',
-        [username]
-    );
+async function findUserById(id) {
+    const query = `
+    SELECT * FROM users
+    WHERE id = $1;
+    `;
+
+    const { rows } = await pool.query(query, [id]);
     return rows[0];
+};
+
+async function addUser(username, password) {
+    const query = `
+    INSERT INTO users (username, password)
+    VALUES ($1, $2)
+    RETURNING *;
+    `;
+    
+    const hashedPassword = await hash.hashPassword(password);
+    await pool.query(query, [username, hashedPassword]);
 };
 
 async function getMessages() {
@@ -29,8 +49,9 @@ async function createMessage(message, userID) {
 };
 
 module.exports = {
-    getUserByName,
-    createUser,
+    findUserByUsername,
+    findUserById,
+    addUser,
     createMessage,
     getMessages
 }

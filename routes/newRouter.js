@@ -1,10 +1,11 @@
 const { Router } = require('express');
 const newRouter = Router();
 const controller = require('../controllers/newController.js');
+const checkAuth = require('../helpers/checkAuth.js');
 
-newRouter.get('/', controller.renderRequestPage);
+newRouter.get('/new', checkAuth, controller.renderRequestPage);
 
-newRouter.post('/', async (req, res) => {
+newRouter.post('/new', async (req, res) => {
     const message = req.body.message;
     const author = req.body.author;
     await controller.createPostRequest(message, author);
